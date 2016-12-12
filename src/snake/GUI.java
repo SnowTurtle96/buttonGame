@@ -64,13 +64,13 @@ public class GUI {
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
-		highscore.setText("HighScore:");
-		lives.setText("Lives");
+		lives.setText("Lives: 5");
 		p2.add(highscore, BorderLayout.WEST);
 		p2.add(lives, BorderLayout.EAST);
 		logic = new LogicController(3, red, yellow, blue, green);
 		highScoreHandler = new HighScores();
-		inputHandler = new HandleInput(logic, highScoreHandler);
+		highscore.setText("HighScore: " + highScoreHandler.getHighScore());
+		inputHandler = new HandleInput(logic, highScoreHandler, highscore, lives);
 		// add ActionListners
 		red.addActionListener(new Listener(inputHandler, red, logic));
 		blue.addActionListener(new Listener(inputHandler, blue, logic));

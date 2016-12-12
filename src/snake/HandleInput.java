@@ -3,6 +3,7 @@ package snake;
 import java.util.Iterator;
 
 import javax.swing.JButton;
+import javax.swing.JLabel;
 
 public class HandleInput {
 	private int lives = 5;
@@ -10,8 +11,12 @@ public class HandleInput {
 	private JButton current;
 	private final LogicController logic;
 	private final HighScores highScore;
+	private JLabel highScoreLabel;
+	private JLabel livesLabel;
 
-	HandleInput(LogicController logic, HighScores highScore) {
+	HandleInput(LogicController logic, HighScores highScore, JLabel highScoreLabel, JLabel livesLabel) {
+		this.highScoreLabel = highScoreLabel;
+		this.livesLabel = livesLabel;
 		this.highScore = highScore;
 		this.logic = logic;
 		setUp();
@@ -44,9 +49,13 @@ public class HandleInput {
 		} else {
 			// deal with being wrong
 			lives--;
+			livesLabel.setText("Lives: " + lives);
+			livesLabel.repaint();
 			if (lives == 0) {
 				logic.turnBlack();
 				highScore.setHighScore(logic.getScore());
+				highScoreLabel.setText("High Score: " + logic.getScore());
+				highScoreLabel.repaint();
 				highScore.exportHighScore();
 			} else {
 				// have to start from the start again
