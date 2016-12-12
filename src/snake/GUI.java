@@ -10,6 +10,7 @@ import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 /**
@@ -20,10 +21,11 @@ public class GUI {
 	public JFrame window;
 	public JButton red, yellow, blue, green;
 	public JPanel p1, p2, p3;
+	private JLabel highscore, lives;
 	public String color;
 	private LogicController logic;
 	private HandleInput inputHandler;
-	private HighScores highScore;
+	private HighScores highScoreHandler;
 
 	public GUI() {
 		showFrame();
@@ -36,7 +38,7 @@ public class GUI {
 		p3 = new JPanel();
 
 		window.setLayout(new BorderLayout());
-		p2.setLayout(new FlowLayout());
+		p2.setLayout(new BorderLayout());
 		p3.setLayout(new FlowLayout());
 
 		p1.setLayout(new GridLayout(2, 2));
@@ -47,6 +49,8 @@ public class GUI {
 		yellow = new JButton();
 		blue = new JButton();
 		green = new JButton();
+		highscore = new JLabel();
+		lives = new JLabel();
 
 		red.setBackground(Color.red);
 		red.setName("Red");
@@ -60,9 +64,13 @@ public class GUI {
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
-		highScore = new HighScores();
+		highscore.setText("HighScore:");
+		lives.setText("Lives");
+		p2.add(highscore, BorderLayout.WEST);
+		p2.add(lives, BorderLayout.EAST);
 		logic = new LogicController(3, red, yellow, blue, green);
-		inputHandler = new HandleInput(logic, highScore);
+		highScoreHandler = new HighScores();
+		inputHandler = new HandleInput(logic, highScoreHandler);
 		// add ActionListners
 		red.addActionListener(new Listener(inputHandler, red, logic));
 		blue.addActionListener(new Listener(inputHandler, blue, logic));
