@@ -3,7 +3,9 @@
  */
 package snake;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.GridLayout;
 
 import javax.swing.JButton;
@@ -14,24 +16,32 @@ import javax.swing.JPanel;
  * @author Jamie
  *
  */
-public class Engine {
+public class GUI {
 	public JFrame window;
 	public JButton red, yellow, blue, green;
-	public JPanel p1;
+	public JPanel p1, p2, p3;
 	public String color;
 	private LogicController logic;
 	private HandleInput inputHandler;
 
-	public Engine() {
+	public GUI() {
 		showFrame();
 		makeFrame();
 	}
 
 	private void makeFrame() {
 		p1 = new JPanel();
-		p1.setLayout(new GridLayout(2, 2));
-		window.add(p1);
+		p2 = new JPanel();
+		p3 = new JPanel();
 
+		window.setLayout(new BorderLayout());
+		p2.setLayout(new FlowLayout());
+		p3.setLayout(new FlowLayout());
+
+		p1.setLayout(new GridLayout(2, 2));
+		window.add(p2, BorderLayout.NORTH); // Top score bar
+		window.add(p1, BorderLayout.CENTER); // Middle Main Game
+		window.add(p3, BorderLayout.SOUTH); // Bottom System Status
 		red = new JButton();
 		yellow = new JButton();
 		blue = new JButton();
@@ -67,7 +77,7 @@ public class Engine {
 	}
 
 	public static void main(String[] args) {
-		new Engine();
+		new GUI();
 	}
 
 }
