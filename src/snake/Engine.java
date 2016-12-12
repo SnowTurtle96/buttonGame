@@ -23,6 +23,7 @@ public class Engine {
 	public String color;
 	private int z;
 	private LogicController logic;
+	private Colors colorClass;
 
 	public Engine() {
 		showFrame();
@@ -34,7 +35,7 @@ public class Engine {
 		Iterator<JButton> order = logic.getOrder();
 		while (order.hasNext()) {
 			JButton button = order.next();
-			changeRed(500, button);
+			changeColor(500, button);
 		}
 	}
 
@@ -46,10 +47,10 @@ public class Engine {
 		}
 	}
 
-	private void changeRed(int time, JButton button) {
+	private void changeColor(int time, JButton button) {
 		pause(time);
 		Color colour = button.getBackground();
-		button.setBackground(Color.orange);
+		button.setBackground(colorClass.changeYellowButton());
 		pause(300);
 		button.setBackground(colour);
 	}
@@ -69,6 +70,7 @@ public class Engine {
 		blue.setBackground(Color.blue);
 		green.setBackground(Color.green);
 		logic = new LogicController(4, red, yellow, blue, green);
+		colorClass = new Colors();
 
 		p1.add(red);
 		p1.add(yellow);

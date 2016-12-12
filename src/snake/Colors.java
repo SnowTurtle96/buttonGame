@@ -14,7 +14,7 @@ public class Colors {
 	private Color redAlternate;
 	private Color yellowAlternate;
 	private Color greenAlternate;
-	private Color blueAlrernate;
+	private Color blueAlternate;
 
 	public Colors() {
 
@@ -26,15 +26,18 @@ public class Colors {
 
 	}
 
-	public void changeYellowButton() {
+	public Color changeYellowButton() {
 
+		yellowAlternate = Color.decode("#FFFF00");
+		return yellowAlternate;
 	}
 
 	public void changeBlueButton() {
-
+		greenAlternate = Color.decode("#00FF00");
 	}
 
 	public void changeGreenButton() {
-
+		blueAlternate = Color.decode("#0000FF");
 	}
+
 }
