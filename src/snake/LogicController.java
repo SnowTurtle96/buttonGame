@@ -1,5 +1,6 @@
 package snake;
 
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
@@ -28,9 +29,10 @@ public class LogicController {
 		this.green = green;
 		setEnabledButtons(false);
 		setUpOrder();
+
 	}
 
-	private void setUpOrder() {
+	void setUpOrder() {
 		order = new ArrayList<JButton>();
 		int i = 0;
 		int n = 0;
@@ -99,7 +101,6 @@ public class LogicController {
 	public void runOrder() {
 		Colors.pause(500);
 		Iterator<JButton> iterator = order.iterator();
-		setEnabledButtons(true);
 		JButton button;
 		while (iterator.hasNext()) {
 			button = iterator.next();
@@ -111,6 +112,14 @@ public class LogicController {
 
 	public Iterator<JButton> getOrder() {
 		return order.iterator();
+	}
+
+	public void turnBlack() {
+		setEnabledButtons(false);
+		red.setBackground(Color.black);
+		blue.setBackground(Color.BLACK);
+		green.setBackground(Color.black);
+		yellow.setBackground(Color.black);
 	}
 
 }

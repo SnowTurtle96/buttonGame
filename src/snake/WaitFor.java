@@ -5,7 +5,7 @@ import java.util.Iterator;
 import javax.swing.JButton;
 
 public class WaitFor {
-	private int lives = 3;
+	private int lives = 5;
 	private Iterator<JButton> order;
 	private JButton current;
 	private LogicController logic;
@@ -21,8 +21,10 @@ public class WaitFor {
 		this.current = order.next();
 	}
 
+	// This code is called after a button is pressed
 	public boolean processButtonPress(JButton button) {
-		logic.setEnabledButtons(false);
+		// attempt to stop any other button being pressed until results of press
+		// are sorted this isn't working great though
 		System.out.println(button.getName() + "  " + current.getName());
 		if (button == current) {
 			// move on to next button
@@ -33,6 +35,7 @@ public class WaitFor {
 			} else {
 				System.out.println("Increasing Difficulty");
 				logic.increaseDifficulty(1);
+				// set's up this class with the new queue to be checked
 				setUp();
 				logic.setEnabledButtons(true);
 			}
@@ -40,7 +43,13 @@ public class WaitFor {
 		} else {
 			// deal with being wrong
 			lives--;
-			logic.setEnabledButtons(true);
+			if (lives == 0) {
+				logic.turnBlack();
+			} else {
+				setUp();
+				logic.runOrder();
+				logic.setEnabledButtons(true);
+			}
 			return false;
 		}
 	}

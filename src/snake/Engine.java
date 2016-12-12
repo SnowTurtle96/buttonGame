@@ -52,10 +52,10 @@ public class Engine {
 		p1.add(green);
 		logic = new LogicController(3, red, yellow, blue, green);
 		waitFor = new WaitFor(logic);
-		red.addActionListener(new Listener(waitFor, red));
-		blue.addActionListener(new Listener(waitFor, blue));
-		yellow.addActionListener(new Listener(waitFor, yellow));
-		green.addActionListener(new Listener(waitFor, green));
+		red.addActionListener(new Listener(waitFor, red, logic));
+		blue.addActionListener(new Listener(waitFor, blue, logic));
+		yellow.addActionListener(new Listener(waitFor, yellow, logic));
+		green.addActionListener(new Listener(waitFor, green, logic));
 	}
 
 	private void showFrame() {
@@ -64,7 +64,6 @@ public class Engine {
 		window.setSize(800, 800);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
-
 	}
 
 	public static void main(String[] args) {

@@ -76,8 +76,6 @@ public class Colors {
 			pause(300);
 			button.setBackground(Color.blue);
 		}
-		// pause(300);
-		// button.setBackground(colour);
 	}
 
 }
