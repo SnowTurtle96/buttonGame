@@ -15,14 +15,13 @@ import javax.swing.JPanel;
  *
  */
 public class Engine {
-
 	public JFrame window;
 	public JButton red, yellow, blue, green;
 	public static Engine engine;
 	public JPanel p1;
-	public int difficulty = 4;
 	public String color;
 	private int z;
+	private LogicController logic;
 
 	public Engine() {
 		showFrame();
@@ -63,7 +62,7 @@ public class Engine {
 		yellow.setBackground(Color.yellow);
 		blue.setBackground(Color.blue);
 		green.setBackground(Color.green);
-		LogicController logic = new LogicController(4);
+		logic = new LogicController(4, red, yellow, blue, green);
 
 		p1.add(red);
 		p1.add(yellow);
@@ -82,7 +81,6 @@ public class Engine {
 	}
 
 	public static void main(String[] args) {
-
 		new Engine();
 	}
 
