@@ -29,9 +29,9 @@ public class LogicController {
 		this.green = green;
 		setEnabledButtons(false);
 		setUpOrder();
-
 	}
 
+	// sets up a new sequence
 	void setUpOrder() {
 		order = new ArrayList<JButton>();
 		int i = 0;
@@ -57,10 +57,11 @@ public class LogicController {
 		runOrder();
 	}
 
-	public void increaseDifficulty(int increase) {
+	// adds a certain number of new elements to the sequence and displays them
+	public void increaseDifficulty(int notoincreaseby) {
 		int i = 0;
 		int n = 0;
-		while (i < increase) {
+		while (i < notoincreaseby) {
 			Random rand = new Random();
 			n = rand.nextInt(4);
 			System.out.println(n);
@@ -90,7 +91,7 @@ public class LogicController {
 
 	}
 
-	// true for turning buttons on
+	// true for turning buttons on, false for not allowing pressing of buttons
 	public void setEnabledButtons(boolean on) {
 		red.setEnabled(on);
 		blue.setEnabled(on);
@@ -98,6 +99,7 @@ public class LogicController {
 		green.setEnabled(on);
 	}
 
+	// goes through the whole sequence and shows it to the playet
 	public void runOrder() {
 		Colors.pause(500);
 		Iterator<JButton> iterator = order.iterator();
@@ -110,10 +112,13 @@ public class LogicController {
 		setEnabledButtons(true);
 	}
 
+	// returns the sequence
 	public Iterator<JButton> getOrder() {
 		return order.iterator();
 	}
 
+	// turns all buttons black and sets them to unclickable (for when run out of
+	// lives)
 	public void turnBlack() {
 		setEnabledButtons(false);
 		red.setBackground(Color.black);

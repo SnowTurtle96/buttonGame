@@ -4,13 +4,13 @@ import java.util.Iterator;
 
 import javax.swing.JButton;
 
-public class WaitFor {
+public class HandleInput {
 	private int lives = 5;
 	private Iterator<JButton> order;
 	private JButton current;
 	private LogicController logic;
 
-	WaitFor(LogicController logic) {
+	HandleInput(LogicController logic) {
 		this.logic = logic;
 		this.order = logic.getOrder();
 		this.current = order.next();

@@ -7,12 +7,11 @@ import javax.swing.JButton;
 
 public class Listener implements ActionListener {
 
-	private WaitFor waitFor;
+	private HandleInput waitFor;
 	private JButton button;
 	private LogicController logic;
 
-	Listener(WaitFor waitFor, JButton button, LogicController logic) {
-		System.out.println(button.getName());
+	Listener(HandleInput waitFor, JButton button, LogicController logic) {
 		this.button = button;
 		this.waitFor = waitFor;
 		this.logic = logic;

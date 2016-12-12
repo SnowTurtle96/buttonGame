@@ -21,7 +21,7 @@ public class Engine {
 	public String color;
 	private LogicController logic;
 	private Colors colorClass;
-	private WaitFor waitFor;
+	private HandleInput inputHandler;
 
 	public Engine() {
 		showFrame();
@@ -51,11 +51,12 @@ public class Engine {
 		p1.add(blue);
 		p1.add(green);
 		logic = new LogicController(3, red, yellow, blue, green);
-		waitFor = new WaitFor(logic);
-		red.addActionListener(new Listener(waitFor, red, logic));
-		blue.addActionListener(new Listener(waitFor, blue, logic));
-		yellow.addActionListener(new Listener(waitFor, yellow, logic));
-		green.addActionListener(new Listener(waitFor, green, logic));
+		inputHandler = new HandleInput(logic);
+		// add ActionListners
+		red.addActionListener(new Listener(inputHandler, red, logic));
+		blue.addActionListener(new Listener(inputHandler, blue, logic));
+		yellow.addActionListener(new Listener(inputHandler, yellow, logic));
+		green.addActionListener(new Listener(inputHandler, green, logic));
 	}
 
 	private void showFrame() {
