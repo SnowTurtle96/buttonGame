@@ -8,6 +8,14 @@ import java.util.Scanner;
 public class HighScores {
 	private int highScore = 0;
 
+	void setHighScore(int highScore) {
+		this.highScore = highScore;
+	}
+
+	int getHighScore() {
+		return highScore;
+	}
+
 	void importHighScore() throws Exception {
 		Scanner sc = new Scanner(new File("HighScores.txt"));
 		if (sc.hasNextInt()) {
@@ -16,14 +24,6 @@ public class HighScores {
 			throw new Exception("No highscore found");
 		}
 		sc.close();
-	}
-
-	void setHighScore(int highScore) {
-		this.highScore = highScore;
-	}
-
-	int getHighScore() {
-		return highScore;
 	}
 
 	void exportHighScore() {
