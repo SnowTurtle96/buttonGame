@@ -12,10 +12,10 @@ import javax.swing.JButton;
  */
 public class LogicController {
 	private ArrayList<JButton> order;
-	JButton red;
-	JButton yellow;
-	JButton blue;
-	JButton green;
+	final JButton red;
+	final JButton yellow;
+	final JButton blue;
+	final JButton green;
 
 	private int difficulty;
 
@@ -26,6 +26,7 @@ public class LogicController {
 		this.yellow = yellow;
 		this.blue = blue;
 		this.green = green;
+		setEnabledButtons(false);
 		setUpOrder();
 	}
 
@@ -51,6 +52,7 @@ public class LogicController {
 			}
 			i++;
 		}
+		runOrder();
 	}
 
 	public void increaseDifficulty(int increase) {
@@ -59,29 +61,49 @@ public class LogicController {
 		while (i < increase) {
 			Random rand = new Random();
 			n = rand.nextInt(4);
+			System.out.println(n);
 			switch (n) {
 			case 0:
+				System.out.println("adding red");
 				order.add(red);
 				break;
 			case 1:
+				System.out.println("adding blue");
 				order.add(blue);
 				break;
 			case 2:
+				System.out.println("adding yellow");
 				order.add(yellow);
 				break;
 			case 3:
+				System.out.println("adding green");
 				order.add(green);
 			}
 			i++;
 		}
+
+		runOrder();
+	}
+
+	// true for turning buttons on
+	public void setEnabledButtons(boolean on) {
+		red.setEnabled(on);
+		blue.setEnabled(on);
+		yellow.setEnabled(on);
+		green.setEnabled(on);
 	}
 
 	public void runOrder() {
+		Colors.pause(500);
 		Iterator<JButton> iterator = order.iterator();
+		setEnabledButtons(true);
+		JButton button;
 		while (iterator.hasNext()) {
-			JButton button = iterator.next();
-			Colors.changeColor(500, button);
+			button = iterator.next();
+			System.out.println(button.getName());
+			Colors.changeColor(300, button);
 		}
+		setEnabledButtons(true);
 	}
 
 	public Iterator<JButton> getOrder() {
