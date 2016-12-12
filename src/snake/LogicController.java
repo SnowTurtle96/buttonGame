@@ -1,13 +1,17 @@
 package snake;
 
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Queue;
 import java.util.Random;
 
 import javax.swing.JButton;
 
+/**
+ * @author Rob
+ *
+ */
 public class LogicController {
-	private Queue<JButton> order;
+	private ArrayList<JButton> order;
 	JButton red;
 	JButton yellow;
 	JButton blue;
@@ -26,13 +30,16 @@ public class LogicController {
 	}
 
 	private void setUpOrder() {
+		order = new ArrayList<JButton>();
 		int i = 0;
 		int n = 0;
-		while (difficulty < i) {
+		while (i <= difficulty) {
 			Random rand = new Random();
 			n = rand.nextInt(4);
-
+			System.out.println(n);
 			i++;
+			System.out.println(yellow.getBackground().toString());
+
 			switch (n) {
 			case 0:
 				order.add(red);
@@ -46,6 +53,7 @@ public class LogicController {
 			case 3:
 				order.add(green);
 			}
+			i++;
 		}
 	}
 
@@ -58,8 +66,4 @@ public class LogicController {
 		return order.iterator();
 	}
 
-	public JButton getNextButton() throws Exception {
-
-		throw new Exception("invalid number");
-	}
 }

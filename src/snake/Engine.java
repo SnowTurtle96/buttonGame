@@ -5,6 +5,7 @@ package snake;
 
 import java.awt.Color;
 import java.awt.GridLayout;
+import java.util.Iterator;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,7 +31,11 @@ public class Engine {
 	}
 
 	public void runOrder() {
-		changeRed(600);
+		Iterator<JButton> order = logic.getOrder();
+		while (order.hasNext()) {
+			JButton button = order.next();
+			changeRed(500, button);
+		}
 	}
 
 	private void pause(int time) {
@@ -41,11 +46,12 @@ public class Engine {
 		}
 	}
 
-	private void changeRed(int time) {
+	private void changeRed(int time, JButton button) {
 		pause(time);
-		red.setBackground(Color.orange);
+		Color colour = button.getBackground();
+		button.setBackground(Color.orange);
 		pause(300);
-		red.setBackground(Color.red);
+		button.setBackground(colour);
 	}
 
 	public void makeFrame() {
@@ -62,7 +68,7 @@ public class Engine {
 		yellow.setBackground(Color.yellow);
 		blue.setBackground(Color.blue);
 		green.setBackground(Color.green);
-		logic = new LogicController(4, red, yellow, blue, green);
+		logic = new LogicController(6, red, yellow, blue, green);
 
 		p1.add(red);
 		p1.add(yellow);
