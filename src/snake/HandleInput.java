@@ -9,8 +9,10 @@ public class HandleInput {
 	private Iterator<JButton> order;
 	private JButton current;
 	private final LogicController logic;
+	private final HighScores highScore;
 
-	HandleInput(LogicController logic) {
+	HandleInput(LogicController logic, HighScores highScore) {
+		this.highScore = highScore;
 		this.logic = logic;
 		setUp();
 	}
@@ -44,6 +46,8 @@ public class HandleInput {
 			lives--;
 			if (lives == 0) {
 				logic.turnBlack();
+				highScore.setHighScore(logic.getScore());
+				highScore.exportHighScore();
 			} else {
 				// have to start from the start again
 				setUp();

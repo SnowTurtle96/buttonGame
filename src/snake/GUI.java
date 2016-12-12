@@ -23,6 +23,7 @@ public class GUI {
 	public String color;
 	private LogicController logic;
 	private HandleInput inputHandler;
+	private HighScores highScore;
 
 	public GUI() {
 		showFrame();
@@ -59,8 +60,9 @@ public class GUI {
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
+		highScore = new HighScores();
 		logic = new LogicController(3, red, yellow, blue, green);
-		inputHandler = new HandleInput(logic);
+		inputHandler = new HandleInput(logic, highScore);
 		// add ActionListners
 		red.addActionListener(new Listener(inputHandler, red, logic));
 		blue.addActionListener(new Listener(inputHandler, blue, logic));

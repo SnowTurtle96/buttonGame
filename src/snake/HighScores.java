@@ -6,10 +6,20 @@ import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class HighScores {
-	private int highScore = 0;
+	private int highScore;
+
+	HighScores() {
+		try {
+			importHighScore();
+		} catch (Exception e) {
+			setHighScore(0);
+		}
+	}
 
 	void setHighScore(int highScore) {
-		this.highScore = highScore;
+		if (this.highScore < highScore) {
+			this.highScore = highScore;
+		}
 	}
 
 	int getHighScore() {

@@ -19,11 +19,11 @@ public class LogicController {
 	final JButton green;
 	final Random rand = new Random();
 
-	private int difficulty;
+	private int score;
 
 	// given difficulty and all the buttons
-	LogicController(int difficulty, JButton red, JButton yellow, JButton blue, JButton green) {
-		this.difficulty = difficulty;
+	LogicController(int score, JButton red, JButton yellow, JButton blue, JButton green) {
+		this.score = score;
 		this.red = red;
 		this.yellow = yellow;
 		this.blue = blue;
@@ -37,7 +37,7 @@ public class LogicController {
 		order = new ArrayList<JButton>();
 		int i = 0;
 		int n = 0;
-		while (i < difficulty) {
+		while (i < score) {
 			n = rand.nextInt(4);
 			switch (n) {
 			case 0:
@@ -59,6 +59,7 @@ public class LogicController {
 
 	// adds a certain number of new elements to the sequence and displays them
 	public void increaseDifficulty(int notoincreaseby) {
+		score += notoincreaseby;
 		int i = 0;
 		int n = 0;
 		while (i < notoincreaseby) {
@@ -123,6 +124,10 @@ public class LogicController {
 		blue.setBackground(Color.BLACK);
 		green.setBackground(Color.black);
 		yellow.setBackground(Color.black);
+	}
+
+	public int getScore() {
+		return score;
 	}
 
 }
