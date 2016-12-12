@@ -36,10 +36,13 @@ public class LogicController {
 			switch (n) {
 			case 0:
 				order.add(red);
+				break;
 			case 1:
 				order.add(blue);
+				break;
 			case 2:
 				order.add(yellow);
+				break;
 			case 3:
 				order.add(green);
 			}
