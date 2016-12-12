@@ -125,4 +125,8 @@ public class LogicController {
 		yellow.setBackground(Color.black);
 	}
 
+	public int getScore() {
+		return score;
+	}
+
 }
