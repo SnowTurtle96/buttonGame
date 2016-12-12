@@ -87,7 +87,6 @@ public class LogicController {
 			}
 			i++;
 		}
-
 	}
 
 	// true for turning buttons on, false for not allowing pressing of buttons

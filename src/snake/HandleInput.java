@@ -8,7 +8,7 @@ public class HandleInput {
 	private int lives = 5;
 	private Iterator<JButton> order;
 	private JButton current;
-	private LogicController logic;
+	private final LogicController logic;
 
 	HandleInput(LogicController logic) {
 		this.logic = logic;
@@ -45,7 +45,9 @@ public class HandleInput {
 			if (lives == 0) {
 				logic.turnBlack();
 			} else {
+				// have to start from the start again
 				setUp();
+				// run through the whole sequence
 				logic.runOrder();
 				logic.setEnabledButtons(true);
 			}
