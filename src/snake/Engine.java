@@ -5,8 +5,6 @@ package snake;
 
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.util.ArrayList;
-import java.util.Random;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,17 +22,31 @@ public class Engine {
 	public JPanel p1;
 	public int difficulty = 4;
 	public String color;
-	public ArrayList<Integer> order;
 	private int z;
 
-	public Engine()
-
-	{
-		order = new ArrayList<Integer>();
-
+	public Engine() {
 		showFrame();
 		makeFrame();
+		runOrder();
+	}
 
+	public void runOrder() {
+		changeRed(600);
+	}
+
+	private void pause(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException ie) {
+			// doNothing           
+		}
+	}
+
+	private void changeRed(int time) {
+		pause(time);
+		red.setBackground(Color.orange);
+		pause(300);
+		red.setBackground(Color.red);
 	}
 
 	public void makeFrame() {
@@ -51,18 +63,17 @@ public class Engine {
 		yellow.setBackground(Color.yellow);
 		blue.setBackground(Color.blue);
 		green.setBackground(Color.green);
+		LogicController logic = new LogicController(4);
 
 		p1.add(red);
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
-		setPattern();
 		list();
-
 	}
 
 	public void showFrame() {
-		window = new JFrame("Snake");
+		window = new JFrame("ButtonGame");
 		window.setLocation(200, 90);
 		window.setSize(800, 800);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -77,25 +88,6 @@ public class Engine {
 
 	public void displayPattern() {
 		red.setBackground(Color.black);
-
-	}
-
-	public void setPattern() {
-		int i = 0;
-		int n = 0;
-
-		while (difficulty < i) {
-			Random rand = new Random();
-			n = rand.nextInt(4) + 1;
-
-			System.out.println(n);
-			i++;
-
-			order.add(n);
-			z = order.size();
-
-		}
-
 	}
 
 	public int list() {
