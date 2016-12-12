@@ -24,25 +24,25 @@ public class Colors {
 
 	public Color changeRedButton() {
 
-		redAlternate = Color.decode("0XFFFFFF");
+		redAlternate = Color.decode("#7f0000");
 		return redAlternate;
 
 	}
 
 	public Color changeYellowButton() {
 
-		yellowAlternate = Color.decode("#FFFF00");
+		yellowAlternate = Color.decode("#999900");
 		return yellowAlternate;
 	}
 
 	public Color changeBlueButton() {
-		greenAlternate = Color.decode("#00FF00");
-		return greenAlternate;
+		blueAlternate = Color.decode("#000099");
+		return blueAlternate;
 	}
 
 	public Color changeGreenButton() {
-		blueAlternate = Color.decode("#0000FF");
-		return blueAlternate;
+		greenAlternate = Color.decode("#00b300");
+		return greenAlternate;
 	}
 
 	public void pause(int time) {
@@ -69,7 +69,7 @@ public class Colors {
 			button.setBackground(changeGreenButton());
 		}
 
-		if (button.getBackground() == Color.red) {
+		if (button.getBackground() == Color.blue) {
 			button.setBackground(changeBlueButton());
 		}
 		pause(300);
