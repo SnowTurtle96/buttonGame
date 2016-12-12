@@ -5,6 +5,8 @@ package snake;
 
 import java.awt.Color;
 
+import javax.swing.JButton;
+
 /**
  * @author Jamie
  *
@@ -20,9 +22,10 @@ public class Colors {
 
 	}
 
-	public void changeRedButton() {
+	public Color changeRedButton() {
 
 		redAlternate = Color.decode("0XFFFFFF");
+		return redAlternate;
 
 	}
 
@@ -32,12 +35,45 @@ public class Colors {
 		return yellowAlternate;
 	}
 
-	public void changeBlueButton() {
+	public Color changeBlueButton() {
 		greenAlternate = Color.decode("#00FF00");
+		return greenAlternate;
 	}
 
-	public void changeGreenButton() {
+	public Color changeGreenButton() {
 		blueAlternate = Color.decode("#0000FF");
+		return blueAlternate;
+	}
+
+	public void pause(int time) {
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException ie) {
+			// doNothing
+		}
+	}
+
+	public void changeColor(int time, JButton button) {
+		pause(time);
+		Color colour = button.getBackground();
+
+		if (button.getBackground() == Color.red) {
+			button.setBackground(changeRedButton());
+		}
+
+		if (button.getBackground() == Color.yellow) {
+			button.setBackground(changeYellowButton());
+		}
+
+		if (button.getBackground() == Color.green) {
+			button.setBackground(changeGreenButton());
+		}
+
+		if (button.getBackground() == Color.red) {
+			button.setBackground(changeBlueButton());
+		}
+		pause(300);
+		button.setBackground(colour);
 	}
 
 }
