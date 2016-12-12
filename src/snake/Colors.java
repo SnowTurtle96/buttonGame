@@ -53,24 +53,31 @@ public class Colors {
 	public static void changeColor(int time, JButton button) {
 		pause(time);
 		Color colour = button.getBackground();
-
 		if (button.getBackground() == Color.red) {
 			button.setBackground(changeRedButton());
+			pause(300);
+			button.setBackground(Color.RED);
 		}
 
 		if (button.getBackground() == Color.yellow) {
 			button.setBackground(changeYellowButton());
+			pause(300);
+			button.setBackground(Color.yellow);
 		}
 
 		if (button.getBackground() == Color.green) {
 			button.setBackground(changeGreenButton());
+			pause(300);
+			button.setBackground(Color.green);
 		}
 
 		if (button.getBackground() == Color.blue) {
 			button.setBackground(changeBlueButton());
+			pause(300);
+			button.setBackground(Color.blue);
 		}
-		pause(300);
-		button.setBackground(colour);
+		// pause(300);
+		// button.setBackground(colour);
 	}
 
 }

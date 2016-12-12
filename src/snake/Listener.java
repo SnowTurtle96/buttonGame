@@ -18,7 +18,13 @@ public class Listener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		waitFor.processButtonPress(this.button);
+		Thread thread = new Thread() {
+			public void run() {
+				waitFor.processButtonPress(button);
+			}
+		};
+		thread.start();
+
 	}
 
 }

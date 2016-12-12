@@ -34,6 +34,7 @@ public class WaitFor {
 				System.out.println("Increasing Difficulty");
 				logic.increaseDifficulty(1);
 				setUp();
+				logic.setEnabledButtons(true);
 			}
 			return true;
 		} else {

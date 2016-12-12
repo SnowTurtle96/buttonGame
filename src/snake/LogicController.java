@@ -65,24 +65,27 @@ public class LogicController {
 			switch (n) {
 			case 0:
 				System.out.println("adding red");
+				Colors.changeColor(300, red);
 				order.add(red);
 				break;
 			case 1:
 				System.out.println("adding blue");
+				Colors.changeColor(300, blue);
 				order.add(blue);
 				break;
 			case 2:
 				System.out.println("adding yellow");
+				Colors.changeColor(300, yellow);
 				order.add(yellow);
 				break;
 			case 3:
 				System.out.println("adding green");
+				Colors.changeColor(300, green);
 				order.add(green);
 			}
 			i++;
 		}
 
-		runOrder();
 	}
 
 	// true for turning buttons on
