@@ -70,6 +70,8 @@ public class Engine {
 		blue.setBackground(Color.blue);
 		green.setBackground(Color.green);
 		logic = new LogicController(4, red, yellow, blue, green);
+		waitFor = new WaitFor(logic);
+
 		colorClass = new Colors();
 
 		p1.add(red);

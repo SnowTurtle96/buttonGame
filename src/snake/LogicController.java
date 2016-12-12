@@ -54,8 +54,26 @@ public class LogicController {
 	}
 
 	public void increaseDifficulty(int increase) {
-		difficulty += increase;
-		setUpOrder();
+		int i = 0;
+		int n = 0;
+		while (i < increase) {
+			Random rand = new Random();
+			n = rand.nextInt(4);
+			switch (n) {
+			case 0:
+				order.add(red);
+				break;
+			case 1:
+				order.add(blue);
+				break;
+			case 2:
+				order.add(yellow);
+				break;
+			case 3:
+				order.add(green);
+			}
+			i++;
+		}
 	}
 
 	public Iterator<JButton> getOrder() {
