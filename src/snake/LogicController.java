@@ -17,6 +17,7 @@ public class LogicController {
 	final JButton yellow;
 	final JButton blue;
 	final JButton green;
+	final Random rand = new Random();
 
 	private int difficulty;
 
@@ -37,7 +38,6 @@ public class LogicController {
 		int i = 0;
 		int n = 0;
 		while (i < difficulty) {
-			Random rand = new Random();
 			n = rand.nextInt(4);
 			switch (n) {
 			case 0:
@@ -62,7 +62,6 @@ public class LogicController {
 		int i = 0;
 		int n = 0;
 		while (i < notoincreaseby) {
-			Random rand = new Random();
 			n = rand.nextInt(4);
 			System.out.println(n);
 			switch (n) {

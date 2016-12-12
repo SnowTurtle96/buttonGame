@@ -20,7 +20,6 @@ public class Engine {
 	public JPanel p1;
 	public String color;
 	private LogicController logic;
-	private Colors colorClass;
 	private HandleInput inputHandler;
 
 	public Engine() {

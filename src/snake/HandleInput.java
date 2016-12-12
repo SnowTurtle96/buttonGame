@@ -12,8 +12,7 @@ public class HandleInput {
 
 	HandleInput(LogicController logic) {
 		this.logic = logic;
-		this.order = logic.getOrder();
-		this.current = order.next();
+		setUp();
 	}
 
 	public void setUp() {

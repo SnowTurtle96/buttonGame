@@ -18,10 +18,6 @@ public class Colors {
 	private static Color greenAlternate;
 	private static Color blueAlternate;
 
-	public Colors() {
-
-	}
-
 	public static Color changeRedButton() {
 		redAlternate = Color.decode("#7f0000");
 		return redAlternate;
@@ -52,7 +48,6 @@ public class Colors {
 
 	public static void changeColor(int time, JButton button) {
 		pause(time);
-		Color colour = button.getBackground();
 		if (button.getBackground() == Color.red) {
 			button.setBackground(changeRedButton());
 			pause(300);
