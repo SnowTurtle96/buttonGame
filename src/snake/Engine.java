@@ -18,10 +18,9 @@ import javax.swing.JPanel;
 public class Engine {
 	public JFrame window;
 	public JButton red, yellow, blue, green;
-	public static Engine engine;
+	public WaitFor waitFor;
 	public JPanel p1;
 	public String color;
-	private int z;
 	private LogicController logic;
 	private Colors colorClass;
 
@@ -31,12 +30,13 @@ public class Engine {
 		runOrder();
 	}
 
-	public void runOrder() {
+	private void runOrder() {
 		Iterator<JButton> order = logic.getOrder();
 		while (order.hasNext()) {
 			JButton button = order.next();
 			changeColor(500, button);
 		}
+		waitFor.setUp(logic.getOrder());
 	}
 
 	private void pause(int time) {
@@ -55,7 +55,7 @@ public class Engine {
 		button.setBackground(colour);
 	}
 
-	public void makeFrame() {
+	private void makeFrame() {
 		p1 = new JPanel();
 		p1.setLayout(new GridLayout(2, 2));
 		window.add(p1);
@@ -76,10 +76,9 @@ public class Engine {
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
-		list();
 	}
 
-	public void showFrame() {
+	private void showFrame() {
 		window = new JFrame("ButtonGame");
 		window.setLocation(200, 90);
 		window.setSize(800, 800);
@@ -92,11 +91,4 @@ public class Engine {
 		new Engine();
 	}
 
-	public void displayPattern() {
-		red.setBackground(Color.black);
-	}
-
-	public int list() {
-		return z;
-	}
 }
