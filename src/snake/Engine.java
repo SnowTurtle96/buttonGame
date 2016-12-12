@@ -42,7 +42,7 @@ public class Engine {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException ie) {
-			// doNothing           
+			// doNothing
 		}
 	}
 
@@ -68,7 +68,7 @@ public class Engine {
 		yellow.setBackground(Color.yellow);
 		blue.setBackground(Color.blue);
 		green.setBackground(Color.green);
-		logic = new LogicController(6, red, yellow, blue, green);
+		logic = new LogicController(4, red, yellow, blue, green);
 
 		p1.add(red);
 		p1.add(yellow);

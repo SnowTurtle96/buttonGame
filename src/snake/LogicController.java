@@ -33,13 +33,9 @@ public class LogicController {
 		order = new ArrayList<JButton>();
 		int i = 0;
 		int n = 0;
-		while (i <= difficulty) {
+		while (i < difficulty) {
 			Random rand = new Random();
 			n = rand.nextInt(4);
-			System.out.println(n);
-			i++;
-			System.out.println(yellow.getBackground().toString());
-
 			switch (n) {
 			case 0:
 				order.add(red);
