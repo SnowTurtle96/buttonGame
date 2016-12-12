@@ -13,39 +13,37 @@ import javax.swing.JButton;
  */
 public class Colors {
 
-	private Color redAlternate;
-	private Color yellowAlternate;
-	private Color greenAlternate;
-	private Color blueAlternate;
+	private static Color redAlternate;
+	private static Color yellowAlternate;
+	private static Color greenAlternate;
+	private static Color blueAlternate;
 
 	public Colors() {
 
 	}
 
-	public Color changeRedButton() {
-
-		redAlternate = Color.decode("0XFFFFFF");
+	public static Color changeRedButton() {
+		redAlternate = Color.BLACK;
 		return redAlternate;
-
 	}
 
-	public Color changeYellowButton() {
+	public static Color changeYellowButton() {
 
-		yellowAlternate = Color.decode("#FFFF00");
+		yellowAlternate = Color.BLACK;
 		return yellowAlternate;
 	}
 
-	public Color changeBlueButton() {
-		greenAlternate = Color.decode("#00FF00");
+	public static Color changeBlueButton() {
+		greenAlternate = Color.BLACK;
 		return greenAlternate;
 	}
 
-	public Color changeGreenButton() {
-		blueAlternate = Color.decode("#0000FF");
+	public static Color changeGreenButton() {
+		blueAlternate = Color.BLACK;
 		return blueAlternate;
 	}
 
-	public void pause(int time) {
+	public static void pause(int time) {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException ie) {
@@ -53,7 +51,7 @@ public class Colors {
 		}
 	}
 
-	public void changeColor(int time, JButton button) {
+	public static void changeColor(int time, JButton button) {
 		pause(time);
 		Color colour = button.getBackground();
 

@@ -16,14 +16,18 @@ public class WaitFor {
 
 	public void setUp(Iterator<JButton> order) {
 		this.order = order;
+		this.current = order.next();
 	}
 
 	public boolean processButtonPress(JButton button) {
+		System.out.println(button.getName() + "  " + current.getName());
 		if (button == current) {
 			// move on to next button
 			if (order.hasNext()) {
+				System.out.println("Waiting for next value");
 				current = order.next();
 			} else {
+				System.out.println("Increasing Difficulty");
 				logic.increaseDifficulty(1);
 			}
 			return true;

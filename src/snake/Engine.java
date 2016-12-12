@@ -22,18 +22,19 @@ public class Engine {
 	public String color;
 	private LogicController logic;
 	private Colors colorClass;
+	private WaitFor waitFor;
 
 	public Engine() {
 		showFrame();
 		makeFrame();
-		runOrder();
+		logic.runOrder();
 	}
 
 	private void runOrder() {
 		Iterator<JButton> order = logic.getOrder();
 		while (order.hasNext()) {
 			JButton button = order.next();
-			colorClass.changeColor(500, button);
+			Colors.changeColor(500, button);
 		}
 	}
 
@@ -48,13 +49,19 @@ public class Engine {
 		green = new JButton();
 
 		red.setBackground(Color.red);
+		red.setName("Red");
 		yellow.setBackground(Color.yellow);
+		yellow.setName("Yellow");
 		blue.setBackground(Color.blue);
+		blue.setName("Blue");
 		green.setBackground(Color.green);
-		logic = new LogicController(4, red, yellow, blue, green);
+		green.setName("Green");
+		logic = new LogicController(1, red, yellow, blue, green);
 		waitFor = new WaitFor(logic);
-
-		colorClass = new Colors();
+		red.addActionListener(new Listener(waitFor, red));
+		blue.addActionListener(new Listener(waitFor, blue));
+		yellow.addActionListener(new Listener(waitFor, yellow));
+		green.addActionListener(new Listener(waitFor, green));
 
 		p1.add(red);
 		p1.add(yellow);

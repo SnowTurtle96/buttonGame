@@ -11,6 +11,7 @@ public class Listener implements ActionListener {
 	private JButton button;
 
 	Listener(WaitFor waitFor, JButton button) {
+		System.out.println(button.getName());
 		this.button = button;
 		this.waitFor = waitFor;
 	}

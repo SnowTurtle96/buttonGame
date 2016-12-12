@@ -76,6 +76,14 @@ public class LogicController {
 		}
 	}
 
+	public void runOrder() {
+		Iterator<JButton> iterator = order.iterator();
+		while (iterator.hasNext()) {
+			JButton button = iterator.next();
+			Colors.changeColor(500, button);
+		}
+	}
+
 	public Iterator<JButton> getOrder() {
 		return order.iterator();
 	}
