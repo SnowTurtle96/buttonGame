@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 public class Engine {
 	public JFrame window;
 	public JButton red, yellow, blue, green;
+	public WaitFor waitFor;
 	public JPanel p1;
 	public String color;
 	private LogicController logic;
@@ -34,6 +35,7 @@ public class Engine {
 			JButton button = order.next();
 			changeRed(500, button);
 		}
+		waitFor.setUp(logic.getOrder());
 	}
 
 	private void pause(int time) {
