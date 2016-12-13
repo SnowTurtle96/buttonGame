@@ -6,18 +6,20 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 
 public class HandleInput {
-	private int lives = 5;
+	private int lives = Constants.STARTING_LIVES;
 	private Iterator<JButton> order;
 	private JButton current;
 	private final LogicController logic;
 	private final HighScores highScore;
 	private JLabel highScoreLabel;
 	private JLabel livesLabel;
+	private JLabel scoreLabel;
 
-	HandleInput(LogicController logic, HighScores highScore, JLabel highScoreLabel, JLabel livesLabel) {
+	HandleInput(LogicController logic, HighScores highScore, JLabel highScoreLabel, JLabel livesLabel, JLabel score) {
 		this.highScoreLabel = highScoreLabel;
 		this.livesLabel = livesLabel;
 		this.highScore = highScore;
+		this.scoreLabel = score;
 		this.logic = logic;
 		setUp();
 	}
@@ -25,6 +27,29 @@ public class HandleInput {
 	public void setUp() {
 		this.order = logic.getOrder();
 		this.current = order.next();
+	}
+
+	void reset() {
+		lives = Constants.STARTING_LIVES;
+		repaintScoreLabel();
+		repaintHighScoreLabel();
+		repaintLivesLabel();
+		setUp();
+	}
+
+	void repaintScoreLabel() {
+		scoreLabel.setText("Score: " + logic.getScore());
+		scoreLabel.repaint();
+	}
+
+	void repaintHighScoreLabel() {
+		highScoreLabel.setText("HighScore: " + highScore.getHighScore());
+		highScoreLabel.repaint();
+	}
+
+	void repaintLivesLabel() {
+		livesLabel.setText("Lives: " + lives);
+		livesLabel.repaint();
 	}
 
 	// This code is called after a button is pressed
@@ -41,6 +66,7 @@ public class HandleInput {
 			} else {
 				System.out.println("Increasing Difficulty");
 				logic.increaseDifficulty(1);
+				repaintScoreLabel();
 				// set's up this class with the new queue to be checked
 				setUp();
 				logic.setEnabledButtons(true);
@@ -49,13 +75,11 @@ public class HandleInput {
 		} else {
 			// deal with being wrong
 			lives--;
-			livesLabel.setText("Lives: " + lives);
-			livesLabel.repaint();
+			repaintLivesLabel();
 			if (lives == 0) {
 				logic.turnBlack();
 				highScore.setHighScore(logic.getScore());
-				highScoreLabel.setText("High Score: " + logic.getScore());
-				highScoreLabel.repaint();
+				repaintHighScoreLabel();
 				highScore.exportHighScore();
 			} else {
 				// have to start from the start again

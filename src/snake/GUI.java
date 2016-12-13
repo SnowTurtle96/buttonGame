@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +28,10 @@ public class GUI {
 	private LogicController logic;
 	private HandleInput inputHandler;
 	private HighScores highScoreHandler;
+	private JLabel score;
+	private JButton reset;
+	private JButton exit;
+	private JButton resetHighScore;
 
 	public GUI() {
 		showFrame();
@@ -49,33 +55,74 @@ public class GUI {
 		yellow = new JButton();
 		blue = new JButton();
 		green = new JButton();
+		reset = new JButton("Reset");
+		exit = new JButton("Exit");
+		resetHighScore = new JButton("Reset High Score");
 		highscore = new JLabel();
 		lives = new JLabel();
+		score = new JLabel();
 
-		red.setBackground(Color.red);
+		initColour();
 		red.setName("Red");
-		yellow.setBackground(Color.yellow);
 		yellow.setName("Yellow");
-		blue.setBackground(Color.blue);
 		blue.setName("Blue");
-		green.setBackground(Color.green);
 		green.setName("Green");
 		p1.add(red);
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
-		lives.setText("Lives: 5");
+		lives.setText("Lives: " + Constants.STARTING_LIVES);
+		score.setText("Score: 0");
 		p2.add(highscore, BorderLayout.WEST);
 		p2.add(lives, BorderLayout.EAST);
-		logic = new LogicController(3, red, yellow, blue, green);
+		p2.add(score, BorderLayout.NORTH);
+
+		resetHighScore.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				highScoreHandler.resetHighScore();
+				highscore.setText("HighScore: 0");
+				highscore.repaint();
+			}
+		});
+		exit.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		reset.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				logic.setEnabledButtons(false);
+				Thread thread = new Thread() {
+					public void run() {
+						initColour();
+						logic.reset();
+						inputHandler.reset();
+					}
+				};
+				thread.start();
+			}
+		});
+		p3.add(exit);
+		p3.add(reset);
+		p3.add(resetHighScore);
+
 		highScoreHandler = new HighScores();
 		highscore.setText("HighScore: " + highScoreHandler.getHighScore());
-		inputHandler = new HandleInput(logic, highScoreHandler, highscore, lives);
+		logic = new LogicController(3, red, yellow, blue, green);
+		inputHandler = new HandleInput(logic, highScoreHandler, highscore, lives, score);
 		// add ActionListners
 		red.addActionListener(new Listener(inputHandler, red, logic));
 		blue.addActionListener(new Listener(inputHandler, blue, logic));
 		yellow.addActionListener(new Listener(inputHandler, yellow, logic));
 		green.addActionListener(new Listener(inputHandler, green, logic));
+	}
+
+	private void initColour() {
+		red.setBackground(Color.red);
+		yellow.setBackground(Color.yellow);
+		blue.setBackground(Color.blue);
+		green.setBackground(Color.green);
+
 	}
 
 	private void showFrame() {

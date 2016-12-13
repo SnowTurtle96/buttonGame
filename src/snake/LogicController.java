@@ -20,15 +20,22 @@ public class LogicController {
 	final Random rand = new Random();
 
 	private int score;
+	private final int offset;
 
 	// given difficulty and all the buttons
 	LogicController(int score, JButton red, JButton yellow, JButton blue, JButton green) {
+		this.offset = score;
 		this.score = score;
 		this.red = red;
 		this.yellow = yellow;
 		this.blue = blue;
 		this.green = green;
 		setEnabledButtons(false);
+		setUpOrder();
+	}
+
+	void reset() {
+		score = 3;
 		setUpOrder();
 	}
 
@@ -68,22 +75,22 @@ public class LogicController {
 			switch (n) {
 			case 0:
 				System.out.println("adding red");
-				Colors.changeColor(300, red);
+				Colors.changeColor(500, red);
 				order.add(red);
 				break;
 			case 1:
 				System.out.println("adding blue");
-				Colors.changeColor(300, blue);
+				Colors.changeColor(500, blue);
 				order.add(blue);
 				break;
 			case 2:
 				System.out.println("adding yellow");
-				Colors.changeColor(300, yellow);
+				Colors.changeColor(500, yellow);
 				order.add(yellow);
 				break;
 			case 3:
 				System.out.println("adding green");
-				Colors.changeColor(300, green);
+				Colors.changeColor(500, green);
 				order.add(green);
 			}
 			i++;
@@ -121,13 +128,17 @@ public class LogicController {
 	public void turnBlack() {
 		setEnabledButtons(false);
 		red.setBackground(Color.black);
+		red.setText("Jamie is a cock end");
 		blue.setBackground(Color.BLACK);
+		blue.setText("Jamie loves it up the bum hole");
 		green.setBackground(Color.black);
+		green.setText("He once fingered a boy while the headmaster was watching");
 		yellow.setBackground(Color.black);
+		yellow.setText("Lock him up for fucks sake");
 	}
 
 	public int getScore() {
-		return score;
+		return score - offset;
 	}
 
 }

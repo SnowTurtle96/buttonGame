@@ -19,6 +19,7 @@ public class HighScores {
 	void setHighScore(int highScore) {
 		if (this.highScore < highScore) {
 			this.highScore = highScore;
+			exportHighScore();
 		}
 	}
 
@@ -34,6 +35,18 @@ public class HighScores {
 			throw new Exception("No highscore found");
 		}
 		sc.close();
+	}
+
+	void resetHighScore() {
+		try {
+			highScore = 0;
+			PrintWriter writer = new PrintWriter("HighScores.txt", "UTF-8");
+			writer.println(0);
+			writer.close();
+		} catch (IOException e) {
+			// do something
+		}
+
 	}
 
 	void exportHighScore() {
