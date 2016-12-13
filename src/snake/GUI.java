@@ -23,12 +23,12 @@ public class GUI {
 	public JFrame window;
 	public JButton red, yellow, blue, green;
 	public JPanel p1, p2, p3;
-	private JLabel highscore, lives;
+	private JLabel highscoreLabel, livesLabel;
 	public String color;
 	private LogicController logic;
 	private HandleInput inputHandler;
 	private HighScores highScoreHandler;
-	private JLabel score;
+	private JLabel scoreLabel;
 	private JButton reset;
 	private JButton exit;
 	private JButton resetHighScore;
@@ -58,9 +58,9 @@ public class GUI {
 		reset = new JButton("Reset");
 		exit = new JButton("Exit");
 		resetHighScore = new JButton("Reset High Score");
-		highscore = new JLabel();
-		lives = new JLabel();
-		score = new JLabel();
+		highscoreLabel = new JLabel();
+		livesLabel = new JLabel();
+		scoreLabel = new JLabel();
 
 		initColour();
 		red.setName("Red");
@@ -71,17 +71,17 @@ public class GUI {
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
-		lives.setText("Lives: " + Constants.STARTING_LIVES);
-		score.setText("Score: 0");
-		p2.add(highscore, BorderLayout.WEST);
-		p2.add(lives, BorderLayout.EAST);
-		p2.add(score, BorderLayout.NORTH);
+		livesLabel.setText("Lives: " + Constants.STARTING_LIVES);
+		scoreLabel.setText("Score: 0");
+		p2.add(highscoreLabel, BorderLayout.WEST);
+		p2.add(livesLabel, BorderLayout.EAST);
+		p2.add(scoreLabel, BorderLayout.NORTH);
 
 		resetHighScore.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				highScoreHandler.resetHighScore();
-				highscore.setText("HighScore: 0");
-				highscore.repaint();
+				highscoreLabel.setText("HighScore: 0");
+				highscoreLabel.repaint();
 			}
 		});
 		exit.addActionListener(new ActionListener() {
@@ -91,7 +91,6 @@ public class GUI {
 		});
 		reset.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				logic.setEnabledButtons(false);
 				Thread thread = new Thread() {
 					public void run() {
 						initColour();
@@ -107,9 +106,9 @@ public class GUI {
 		p3.add(resetHighScore);
 
 		highScoreHandler = new HighScores();
-		highscore.setText("HighScore: " + highScoreHandler.getHighScore());
+		highscoreLabel.setText("HighScore: " + highScoreHandler.getHighScore());
 		logic = new LogicController(3, red, yellow, blue, green);
-		inputHandler = new HandleInput(logic, highScoreHandler, highscore, lives, score);
+		inputHandler = new HandleInput(logic, highScoreHandler, highscoreLabel, livesLabel, scoreLabel);
 		// add ActionListners
 		red.addActionListener(new Listener(inputHandler, red, logic));
 		blue.addActionListener(new Listener(inputHandler, blue, logic));

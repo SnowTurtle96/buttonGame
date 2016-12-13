@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.concurrent.Semaphore;
 
 import javax.swing.JButton;
 
@@ -21,6 +22,9 @@ public class LogicController {
 
 	private int score;
 	private final int offset;
+	private Semaphore running = new Semaphore(1);
+	private ArrayList<Thread> threads = new ArrayList<Thread>();
+	private Semaphore threadSem = new Semaphore(1);
 
 	// given difficulty and all the buttons
 	LogicController(int score, JButton red, JButton yellow, JButton blue, JButton green) {
@@ -107,15 +111,24 @@ public class LogicController {
 
 	// goes through the whole sequence and shows it to the playet
 	public void runOrder() {
-		Colors.pause(500);
-		Iterator<JButton> iterator = order.iterator();
-		JButton button;
-		while (iterator.hasNext()) {
-			button = iterator.next();
-			System.out.println(button.getName());
-			Colors.changeColor(300, button);
+		try {
+			running.acquire();
+			Colors.pause(500);
+			Iterator<JButton> iterator = order.iterator();
+			JButton button;
+			while (iterator.hasNext()) {
+				button = iterator.next();
+				System.out.println(button.getName());
+				Colors.changeColor(300, button);
+			}
+			setEnabledButtons(true);
+			running.release();
+		} catch (InterruptedException e) {
+			Colors.changeColor(0, red);
+			Colors.changeColor(0, yellow);
+			Colors.changeColor(0, green);
+			Colors.changeColor(0, blue);
 		}
-		setEnabledButtons(true);
 	}
 
 	// returns the sequence

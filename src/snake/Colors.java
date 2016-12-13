@@ -47,7 +47,7 @@ public class Colors {
 	}
 
 	public static void changeColor(int time, JButton button) {
-		pause(300);
+		pause(100);
 		if (button.getBackground() == Color.red) {
 			button.setBackground(changeRedButton());
 			pause(time);
