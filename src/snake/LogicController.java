@@ -141,13 +141,9 @@ public class LogicController {
 	public void turnBlack() {
 		setEnabledButtons(false);
 		red.setBackground(Color.black);
-		red.setText("Jamie is a cock end");
 		blue.setBackground(Color.BLACK);
-		blue.setText("Jamie loves it up the bum hole");
 		green.setBackground(Color.black);
-		green.setText("He once fingered a boy while the headmaster was watching");
 		yellow.setBackground(Color.black);
-		yellow.setText("Lock him up for fucks sake");
 	}
 
 	public int getScore() {

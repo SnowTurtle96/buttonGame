@@ -22,7 +22,7 @@ import javax.swing.JPanel;
 public class GUI {
 	public JFrame window;
 	public JButton red, yellow, blue, green;
-	public JPanel p1, p2, p3;
+	public JPanel p1, p2, p3, p4, p5;
 	private JLabel highscoreLabel, livesLabel;
 	public String color;
 	private LogicController logic;
@@ -31,33 +31,37 @@ public class GUI {
 	private JLabel scoreLabel;
 	private JButton reset;
 	private JButton exit;
-	private JButton resetHighScore;
+	private Audio audio;
 
 	public GUI() {
 		showFrame();
 		makeFrame();
+		audio = new Audio();
+		audio.play();
 	}
 
 	private void makeFrame() {
 		p1 = new JPanel();
 		p2 = new JPanel();
 		p3 = new JPanel();
+		p4 = new JPanel(); // I hate swing
+		p5 = new JPanel(); // I hate swing
 
 		window.setLayout(new BorderLayout());
-		p2.setLayout(new BorderLayout());
+		p2.setLayout(new BorderLayout()); // WORK
 		p3.setLayout(new FlowLayout());
-
+		p4.setLayout(new FlowLayout());
 		p1.setLayout(new GridLayout(2, 2));
 		window.add(p2, BorderLayout.NORTH); // Top score bar
 		window.add(p1, BorderLayout.CENTER); // Middle Main Game
 		window.add(p3, BorderLayout.SOUTH); // Bottom System Status
+		p2.add(p4, BorderLayout.CENTER);
 		red = new JButton();
 		yellow = new JButton();
 		blue = new JButton();
 		green = new JButton();
 		reset = new JButton("Reset");
 		exit = new JButton("Exit");
-		resetHighScore = new JButton("Reset High Score");
 		highscoreLabel = new JLabel();
 		livesLabel = new JLabel();
 		scoreLabel = new JLabel();
@@ -71,19 +75,13 @@ public class GUI {
 		p1.add(yellow);
 		p1.add(blue);
 		p1.add(green);
+
 		livesLabel.setText("Lives: " + Constants.STARTING_LIVES);
 		scoreLabel.setText("Score: 0");
-		p2.add(highscoreLabel, BorderLayout.WEST);
-		p2.add(livesLabel, BorderLayout.EAST);
-		p2.add(scoreLabel, BorderLayout.NORTH);
+		p2.add(highscoreLabel, BorderLayout.EAST);
+		p2.add(livesLabel, BorderLayout.WEST);
+		p4.add(scoreLabel);
 
-		resetHighScore.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				highScoreHandler.resetHighScore();
-				highscoreLabel.setText("HighScore: 0");
-				highscoreLabel.repaint();
-			}
-		});
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
@@ -103,7 +101,6 @@ public class GUI {
 		});
 		p3.add(exit);
 		p3.add(reset);
-		p3.add(resetHighScore);
 
 		highScoreHandler = new HighScores();
 		highscoreLabel.setText("HighScore: " + highScoreHandler.getHighScore());
