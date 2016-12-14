@@ -31,13 +31,12 @@ public class GUI {
 	private JLabel scoreLabel;
 	private JButton reset;
 	private JButton exit;
-	private Audio audio;
+	private Colors alternateColors;
 
 	public GUI() {
 		showFrame();
 		makeFrame();
-		audio = new Audio();
-		audio.play();
+
 	}
 
 	private void makeFrame() {
@@ -123,10 +122,12 @@ public class GUI {
 
 	private void showFrame() {
 		window = new JFrame("ButtonGame");
-		window.setLocation(200, 90);
 		window.setSize(800, 800);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+		window.setResizable(false);
+		window.setLocationRelativeTo(null);
+
 	}
 
 	public static void main(String[] args) {
