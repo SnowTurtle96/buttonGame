@@ -23,11 +23,10 @@ public class GUIDlgFail
 
 	public void showFrame() {
 		window = new JFrame();
-		window.setLocation(200, 90);
 		window.setSize(400, 500);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setVisible(false);
 		window.setResizable(false);
+		window.setLocationRelativeTo(null);
 
 	}
 
