@@ -27,6 +27,8 @@ public class GUIDlgFail
 		window.setSize(400, 500);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(false);
+		window.setResizable(false);
+
 	}
 
 	public void setVisible() {

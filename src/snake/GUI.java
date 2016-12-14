@@ -126,6 +126,8 @@ public class GUI {
 		window.setSize(800, 800);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
+		window.setResizable(false);
+
 	}
 
 	public static void main(String[] args) {
