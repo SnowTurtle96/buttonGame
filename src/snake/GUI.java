@@ -36,8 +36,6 @@ public class GUI {
 	public GUI() {
 		showFrame();
 		makeFrame();
-		audio = new Audio();
-		audio.play();
 	}
 
 	private void makeFrame() {

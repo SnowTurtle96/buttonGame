@@ -120,6 +120,7 @@ public class LogicController {
 				button = iterator.next();
 				System.out.println(button.getName());
 				Colors.changeColor(300, button);
+				Audio.Play(button);
 			}
 			setEnabledButtons(true);
 			running.release();
