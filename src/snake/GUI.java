@@ -31,11 +31,12 @@ public class GUI {
 	private JLabel scoreLabel;
 	private JButton reset;
 	private JButton exit;
-	private Audio audio;
+	private Colors alternateColors;
 
 	public GUI() {
 		showFrame();
 		makeFrame();
+
 	}
 
 	private void makeFrame() {

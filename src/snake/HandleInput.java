@@ -56,17 +56,16 @@ public class HandleInput {
 	public boolean processButtonPress(JButton button) {
 		// attempt to stop any other button being pressed until results of press
 		// are sorted this isn't working great though
-		System.out.println(button.getName() + "  " + current.getName());
 		if (button == current) {
 			// move on to next button
+			Audio.playAll(button);
 			if (order.hasNext()) {
-				System.out.println("Waiting for next value");
 				current = order.next();
 				logic.setEnabledButtons(true);
 			} else {
-				System.out.println("Increasing Difficulty");
 				logic.increaseDifficulty(1);
 				repaintScoreLabel();
+
 				// set's up this class with the new queue to be checked
 				setUp();
 				logic.setEnabledButtons(true);

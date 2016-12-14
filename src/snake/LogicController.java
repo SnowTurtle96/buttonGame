@@ -22,9 +22,11 @@ public class LogicController {
 
 	private int score;
 	private final int offset;
+	private int speed; // Variable at which we increase the gaps between flashes
 	private Semaphore running = new Semaphore(1);
 	private ArrayList<Thread> threads = new ArrayList<Thread>();
 	private Semaphore threadSem = new Semaphore(1);
+	private GUIDlgFail failScreen;
 
 	// given difficulty and all the buttons
 	LogicController(int score, JButton red, JButton yellow, JButton blue, JButton green) {
@@ -36,6 +38,8 @@ public class LogicController {
 		this.green = green;
 		setEnabledButtons(false);
 		setUpOrder();
+		failScreen = new GUIDlgFail();
+
 	}
 
 	void reset() {
@@ -81,21 +85,25 @@ public class LogicController {
 				System.out.println("adding red");
 				Colors.changeColor(500, red);
 				order.add(red);
+				Audio.playRed();
 				break;
 			case 1:
 				System.out.println("adding blue");
 				Colors.changeColor(500, blue);
 				order.add(blue);
+				Audio.playBlue();
 				break;
 			case 2:
 				System.out.println("adding yellow");
 				Colors.changeColor(500, yellow);
 				order.add(yellow);
+				Audio.playYellow();
 				break;
 			case 3:
 				System.out.println("adding green");
 				Colors.changeColor(500, green);
 				order.add(green);
+				Audio.playGreen();
 			}
 			i++;
 		}
@@ -109,18 +117,18 @@ public class LogicController {
 		green.setEnabled(on);
 	}
 
-	// goes through the whole sequence and shows it to the playet
+	// goes through the whole sequence and shows it to the player
 	public void runOrder() {
 		try {
 			running.acquire();
-			Colors.pause(500);
+			Colors.pause(speed);
 			Iterator<JButton> iterator = order.iterator();
 			JButton button;
 			while (iterator.hasNext()) {
 				button = iterator.next();
 				System.out.println(button.getName());
 				Colors.changeColor(300, button);
-				Audio.Play(button);
+				Audio.playAll(button);
 			}
 			setEnabledButtons(true);
 			running.release();
@@ -145,10 +153,28 @@ public class LogicController {
 		blue.setBackground(Color.BLACK);
 		green.setBackground(Color.black);
 		yellow.setBackground(Color.black);
+		failScreen.setVisible();
 	}
 
 	public int getScore() {
 		return score - offset;
 	}
 
+	public void speed() {
+		if (score < 2) {
+			speed = 500;
+		}
+
+		if (score < 4) {
+			speed = 400;
+		}
+
+		if (score < 6) {
+			speed = 300;
+		}
+
+		if (score < 8) {
+			speed = 200;
+		}
+	}
 }

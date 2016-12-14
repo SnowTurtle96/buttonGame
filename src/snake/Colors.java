@@ -73,4 +73,20 @@ public class Colors {
 		}
 	}
 
+	public Color getYellow() {
+		return yellowAlternate;
+	}
+
+	public Color getRed() {
+		return redAlternate;
+	}
+
+	public Color getBlue() {
+		return blueAlternate;
+	}
+
+	public Color getGreen() {
+		return greenAlternate;
+	}
+
 }
