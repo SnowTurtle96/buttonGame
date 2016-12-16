@@ -84,22 +84,22 @@ public class LogicController {
 			case 0:
 				System.out.println("adding red");
 				order.add(red);
-				Audio.playRed();
+				// Audio.playRed();
 				break;
 			case 1:
 				System.out.println("adding blue");
 				order.add(blue);
-				Audio.playBlue();
+				// Audio.playBlue();
 				break;
 			case 2:
 				System.out.println("adding yellow");
 				order.add(yellow);
-				Audio.playYellow();
+				// Audio.playYellow();
 				break;
 			case 3:
 				System.out.println("adding green");
 				order.add(green);
-				Audio.playGreen();
+				// Audio.playGreen();
 			}
 			i++;
 			runOrder();
