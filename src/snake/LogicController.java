@@ -24,8 +24,6 @@ public class LogicController {
 	private final int offset;
 	private int speed; // Variable at which we increase the gaps between flashes
 	private Semaphore running = new Semaphore(1);
-	private ArrayList<Thread> threads = new ArrayList<Thread>();
-	private Semaphore threadSem = new Semaphore(1);
 	private GUIDlgFail failScreen;
 
 	// given difficulty and all the buttons
@@ -117,7 +115,6 @@ public class LogicController {
 	// goes through the whole sequence and shows it to the player
 	public void runOrder() {
 		Colors.pause(500);
-
 		try {
 			running.acquire();
 			Colors.pause(speed);

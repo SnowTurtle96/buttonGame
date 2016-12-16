@@ -32,6 +32,7 @@ public class HighScores {
 		if (sc.hasNextInt()) {
 			highScore = sc.nextInt();
 		} else {
+			sc.close();
 			throw new Exception("No highscore found");
 		}
 		sc.close();

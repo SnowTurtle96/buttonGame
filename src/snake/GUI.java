@@ -31,7 +31,6 @@ public class GUI {
 	private JLabel scoreLabel;
 	private JButton reset;
 	private JButton exit;
-	private Colors alternateColors;
 
 	public GUI() {
 		showFrame();
