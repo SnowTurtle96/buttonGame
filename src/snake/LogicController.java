@@ -83,29 +83,26 @@ public class LogicController {
 			switch (n) {
 			case 0:
 				System.out.println("adding red");
-				Colors.changeColor(500, red);
 				order.add(red);
 				Audio.playRed();
 				break;
 			case 1:
 				System.out.println("adding blue");
-				Colors.changeColor(500, blue);
 				order.add(blue);
 				Audio.playBlue();
 				break;
 			case 2:
 				System.out.println("adding yellow");
-				Colors.changeColor(500, yellow);
 				order.add(yellow);
 				Audio.playYellow();
 				break;
 			case 3:
 				System.out.println("adding green");
-				Colors.changeColor(500, green);
 				order.add(green);
 				Audio.playGreen();
 			}
 			i++;
+			runOrder();
 		}
 	}
 
@@ -119,6 +116,8 @@ public class LogicController {
 
 	// goes through the whole sequence and shows it to the player
 	public void runOrder() {
+		Colors.pause(500);
+
 		try {
 			running.acquire();
 			Colors.pause(speed);
