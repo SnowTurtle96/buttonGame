@@ -82,7 +82,12 @@ public class HandleInput {
 				highScore.setHighScore(logic.getScore());
 				repaintHighScoreLabel();
 				highScore.exportHighScore();
+				for (int i = 0; i < 3; i++) {
+					Audio.playLoseLife();
+					Colors.pause(500);
+				}
 			} else {
+				Audio.playLoseLife();
 				// have to start from the start again
 				setUp();
 				// run through the whole sequence

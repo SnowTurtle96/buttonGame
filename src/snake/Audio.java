@@ -12,6 +12,20 @@ public class Audio {
 	public Audio() {
 	}
 
+	public static void playLoseLife() {
+		try {
+
+			File filename = new File("LoseLife.wav");
+
+			Clip clip = AudioSystem.getClip();
+			clip.open(AudioSystem.getAudioInputStream(filename));
+			clip.start();
+		} catch (Exception exc) {
+			exc.printStackTrace(System.out);
+		}
+
+	}
+
 	public static void playRed() {
 
 		try {
