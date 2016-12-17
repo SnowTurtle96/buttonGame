@@ -35,7 +35,6 @@ public class GUI {
 	public GUI() {
 		showFrame();
 		makeFrame();
-
 	}
 
 	private void makeFrame() {
@@ -127,7 +126,6 @@ public class GUI {
 		window.setVisible(true);
 		window.setResizable(false);
 		window.setLocationRelativeTo(null);
-
 	}
 
 	public static void main(String[] args) {
