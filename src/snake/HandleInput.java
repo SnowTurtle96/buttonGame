@@ -64,10 +64,12 @@ public class HandleInput {
 				logic.setEnabledButtons(true);
 			} else {
 				logic.increaseDifficulty(1);
+				highScore.setHighScore(logic.getScore());
+				repaintHighScoreLabel();
 				repaintScoreLabel();
-
 				// set's up this class with the new queue to be checked
 				setUp();
+				logic.runOrder();
 				logic.setEnabledButtons(true);
 			}
 			return true;

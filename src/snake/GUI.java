@@ -79,9 +79,11 @@ public class GUI {
 		p2.add(highscoreLabel, BorderLayout.EAST);
 		p2.add(livesLabel, BorderLayout.WEST);
 		p4.add(scoreLabel);
+		highScoreHandler = new HighScores();
 
 		exit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				highScoreHandler.exportHighScore();
 				System.exit(0);
 			}
 		});
@@ -100,7 +102,6 @@ public class GUI {
 		p3.add(exit);
 		p3.add(reset);
 
-		highScoreHandler = new HighScores();
 		highscoreLabel.setText("HighScore: " + highScoreHandler.getHighScore());
 		logic = new LogicController(3, red, yellow, blue, green);
 		inputHandler = new HandleInput(logic, highScoreHandler, highscoreLabel, livesLabel, scoreLabel);

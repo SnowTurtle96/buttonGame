@@ -100,7 +100,6 @@ public class LogicController {
 				// Audio.playGreen();
 			}
 			i++;
-			runOrder();
 		}
 	}
 

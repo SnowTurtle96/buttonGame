@@ -60,4 +60,8 @@ public class HighScores {
 		}
 	}
 
+	public void incHighScore() {
+		highScore++;
+	}
+
 }
