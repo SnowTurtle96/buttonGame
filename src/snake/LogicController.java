@@ -20,16 +20,16 @@ public class LogicController {
 	final JButton green;
 	final Random rand = new Random();
 
-	private int score = 1;
-	private final int offset;
+	private int noOfButtons;
+	private final int startNoOfButtons;
 	private int speed; // Variable at which we increase the gaps between flashes
 	private Semaphore running = new Semaphore(1);
 	private GUIDlgFail failScreen;
 
 	// given difficulty and all the buttons
 	LogicController(int score, JButton red, JButton yellow, JButton blue, JButton green) {
-		this.offset = score;
-		this.score = score;
+		this.startNoOfButtons = score;
+		this.noOfButtons = score;
 		this.red = red;
 		this.yellow = yellow;
 		this.blue = blue;
@@ -41,7 +41,7 @@ public class LogicController {
 	}
 
 	void reset() {
-		score = 3;
+		noOfButtons = 3;
 		setUpOrder();
 	}
 
@@ -50,7 +50,7 @@ public class LogicController {
 		order = new ArrayList<JButton>();
 		int i = 0;
 		int n = 0;
-		while (i > score) {
+		while (i < noOfButtons) {
 			n = rand.nextInt(4);
 			switch (n) {
 			case 0:
@@ -72,7 +72,7 @@ public class LogicController {
 
 	// adds a certain number of new elements to the sequence and displays them
 	public void increaseDifficulty(int notoincreaseby) {
-		score += notoincreaseby;
+		noOfButtons += notoincreaseby;
 		int i = 0;
 		int n = 0;
 		while (i < notoincreaseby) {
@@ -152,23 +152,17 @@ public class LogicController {
 	}
 
 	public int getScore() {
-		return score - offset;
+		return noOfButtons - startNoOfButtons;
 	}
 
 	public void speed() {
-		if (score < 2) {
+		if (noOfButtons < 2) {
 			speed = 500;
-		}
-
-		if (score < 4) {
+		} else if (2 <= noOfButtons && noOfButtons < 4) {
 			speed = 400;
-		}
-
-		if (score < 6) {
+		} else if (4 <= noOfButtons && noOfButtons <= 6) {
 			speed = 300;
-		}
-
-		if (score < 8) {
+		} else {
 			speed = 200;
 		}
 	}
