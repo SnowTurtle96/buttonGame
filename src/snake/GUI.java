@@ -75,7 +75,7 @@ public class GUI {
 		p1.add(green);
 
 		livesLabel.setText("Lives: " + Constants.STARTING_LIVES);
-		scoreLabel.setText("Score: 0");
+		scoreLabel.setText("Round: 0");
 		p2.add(highscoreLabel, BorderLayout.EAST);
 		p2.add(livesLabel, BorderLayout.WEST);
 		p4.add(scoreLabel);

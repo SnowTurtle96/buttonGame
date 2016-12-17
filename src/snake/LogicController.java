@@ -20,7 +20,7 @@ public class LogicController {
 	final JButton green;
 	final Random rand = new Random();
 
-	private int score;
+	private int score = 1;
 	private final int offset;
 	private int speed; // Variable at which we increase the gaps between flashes
 	private Semaphore running = new Semaphore(1);
@@ -50,7 +50,7 @@ public class LogicController {
 		order = new ArrayList<JButton>();
 		int i = 0;
 		int n = 0;
-		while (i < score) {
+		while (i > score) {
 			n = rand.nextInt(4);
 			switch (n) {
 			case 0:
