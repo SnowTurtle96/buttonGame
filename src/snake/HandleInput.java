@@ -38,7 +38,7 @@ public class HandleInput {
 	}
 
 	void repaintScoreLabel() {
-		scoreLabel.setText("Score: " + logic.getScore());
+		scoreLabel.setText("Round: " + logic.getScore());
 		scoreLabel.repaint();
 	}
 

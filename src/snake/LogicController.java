@@ -113,7 +113,8 @@ public class LogicController {
 
 	// goes through the whole sequence and shows it to the player
 	public void runOrder() {
-		Colors.pause(500);
+		speed();
+		Colors.pause(300);
 		try {
 			running.acquire();
 			Colors.pause(speed);
@@ -122,8 +123,10 @@ public class LogicController {
 			while (iterator.hasNext()) {
 				button = iterator.next();
 				System.out.println(button.getName());
-				Colors.changeColor(300, button);
+				Colors.changeColor(speed, button);
 				Audio.playAll(button);
+				System.out.println(speed);
+
 			}
 			setEnabledButtons(true);
 			running.release();
@@ -156,14 +159,31 @@ public class LogicController {
 	}
 
 	public void speed() {
-		if (noOfButtons < 2) {
-			speed = 500;
-		} else if (2 <= noOfButtons && noOfButtons < 4) {
+		if (noOfButtons < 4) {
 			speed = 400;
-		} else if (4 <= noOfButtons && noOfButtons <= 6) {
+		} else if (noOfButtons < 5) {
+			speed = 375;
+		} else if (noOfButtons < 6) {
+			speed = 350;
+		} else if (noOfButtons < 7) {
+			speed = 325;
+		} else if (noOfButtons < 8) {
 			speed = 300;
-		} else {
+
+		} else if (noOfButtons < 9) {
+			speed = 275;
+
+		} else if (noOfButtons < 10) {
+			speed = 250;
+
+		} else if (noOfButtons < 11) {
+			speed = 225;
+		}
+
+		else {
 			speed = 200;
 		}
+		System.out.println(speed);
+
 	}
 }
